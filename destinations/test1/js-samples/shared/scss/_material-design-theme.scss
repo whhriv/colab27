@@ -1,0 +1,12 @@
+// configure the theme for material design components loaded from cdn
+:root {
+  --mdc-theme-primary: #1a73e8;
+  --mdc-theme-secondary: #rgb(225, 245, 254);
+  --mdc-theme-on-primary: #fff;
+  --mdc-theme-on-secondary: rgb(1, 87, 155);
+}
+
+// fix the focused primary color
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--mdc-theme-primary);
+}

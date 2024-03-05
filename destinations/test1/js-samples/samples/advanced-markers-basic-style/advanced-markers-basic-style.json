@@ -1,0 +1,13 @@
+{
+    "title": "Advanced Marker Basic Customization",
+    "dynamic_import": "true",
+    "version": "weekly",
+    "tag": "advanced_markers_basic_style",
+    "name": "advanced-markers-basic-style",
+    "pagination": {
+      "data": "mode",
+      "size": 1,
+      "alias": "mode"
+    },
+    "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+  }

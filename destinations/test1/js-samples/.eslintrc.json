@@ -1,0 +1,35 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:googlemaps/recommended"
+  ],
+  "plugins": ["googlemaps"],
+  "parserOptions": {
+    "sourceType": "module",
+    "requireConfigFile": false,
+    "ecmaVersion": 2017
+  },
+  "parser": "@typescript-eslint/parser",
+  "globals": {
+    "google": "writable",
+    "deck": "readonly",
+    "ActiveXObject": "readonly",
+    "mdc": "readonly",
+    "Split": "readonly",
+    "MarkerClusterer": "readonly",
+    "THREE": "readonly"
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "react/prop-types": 0,
+    "no-unused-vars": [1, { "varsIgnorePattern": "init*" }],
+    "no-var": 2,    
+    "prefer-arrow-callback": 2
+  }
+}

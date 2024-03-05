@@ -1,0 +1,13 @@
+{
+    "title": "Advanced Marker Simple HTML",
+    "dynamic_import": "true",
+    "version": "weekly",
+    "tag": "advanced_markers_html_simple",
+    "name": "advanced-markers-html-simple",
+    "pagination": {
+      "data": "mode",
+      "size": 1,
+      "alias": "mode"
+    },
+    "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+  }
