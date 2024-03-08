@@ -47,6 +47,11 @@ function Directions(){
 
     directionsService.route({
       origin: "san diego, CA",
+      waypoints: [
+        { location: "oceanside, ca" }, 
+        { location: "temecula, ca" },
+        { location: "san clemente, ca" }  
+    ],
       destination: "Los Angelas, CA",
       travelMode: google.maps.TravelMode.DRIVING,
       provideRouteAlternatives: true,
@@ -54,7 +59,11 @@ function Directions(){
     .then((res) => {
       directionsRenderer.setDirections(res);
       setRoutes(res.routes);
+      console.log(routes)
 
+    })
+    .catch(error => {
+        console.log(error("error fetching directions:", error))
     })
   }, [directionsService, directionsRenderer]);
 
