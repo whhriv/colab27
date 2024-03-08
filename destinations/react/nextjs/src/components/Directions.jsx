@@ -17,7 +17,7 @@ export default function DirectionMapSpace() {
         <APIProvider apiKey='AIzaSyAR-r8GJmwcm-9s2gqKkKHa3K4Km145a7Q'
         >
 
-          <Map center={position} zoom={7}></Map>
+          <Map  ></Map>
             <Directions />
         </APIProvider>  
       </div>

@@ -5,6 +5,7 @@ import MapSpace from './components/MapSpace';
 import CreateRoute from './components/CreateRoute'
 import NavBar from './components/navbar'
 import Directions from './components/Directions'
+// import UserLocation from './components/UserLocation'
 
 export default function App() {
 
