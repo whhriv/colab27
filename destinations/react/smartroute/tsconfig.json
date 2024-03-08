@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/.map.ts"],
+  "include": ["src", "src/trials/.map.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
