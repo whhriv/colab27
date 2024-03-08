@@ -1,28 +1,22 @@
+import Container from 'react-bootstrap/Container';
+// import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import MapSpace from './components/MapSpace';
+import CreateRoute from './components/CreateRoute'
+import NavBar from './components/navbar'
 
-import { useState, useEffect } from 'react'
-import {
-  APIProvider,
-  Map,
-  useMapsLibrary,
-  useMap,
-} from "@vis.gl/react-google-maps"
+export default function App() {
 
-export default function MapSpace() {
-      const position = {
-        lat: 40.5265,
-        lng: -122.8756
-    }
-
-    return (
-      <div style={{height: "100vh", width: "100%"}}>
-        <APIProvider apiKey='AIzaSyAR-r8GJmwcm-9s2gqKkKHa3K4Km145a7Q'
-        >
-
-          <Map center={position} zoom={7}></Map>
-
-        </APIProvider>  
-      </div>
-    )
-
+  return (
+    <BrowserRouter>
+      <Container data-bs-theme='dark'>
+        <NavBar  />
+          <Routes>
+          <Route path='/mapspace' element={<MapSpace />}/>
+          <Route path='/createroute' element={<CreateRoute />}/>
+          
+        </Routes>
+      </Container>
+    </BrowserRouter>
+  )
 }
-
