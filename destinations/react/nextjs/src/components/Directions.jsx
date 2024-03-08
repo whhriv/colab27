@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react'
 import {
   APIProvider,
@@ -7,7 +6,7 @@ import {
   useMap,
 } from "@vis.gl/react-google-maps"
 
-export default function MapSpace() {
+export default function DirectionMapSpace() {
       const position = {
         lat: 32.748994,
         lng: -117.231647
@@ -19,7 +18,7 @@ export default function MapSpace() {
         >
 
           <Map center={position} zoom={7}></Map>
-        
+            <Directions />
         </APIProvider>  
       </div>
     )
@@ -29,7 +28,7 @@ export default function MapSpace() {
 function Directions(){
   const map = useMap();
   const routesLibrary = useMapsLibrary('routes')
-  const [directionService, setDirectionService] = useState();
+  const [directionsService, setDirectionsService] = useState();
   const [directionsRenderer, setDirectionsRenderer] = useState();
   const [routes, setRoutes] = useState([])
   const [routeIndex, setRouteIndex] = useState(0);
@@ -39,25 +38,25 @@ function Directions(){
 
   useEffect(() => {
     if (!routesLibrary || !map) return;
-    setDirectionService(new routesLibrary.DirectionsService());
+    setDirectionsService(new routesLibrary.DirectionsService());
     setDirectionsRenderer(new routesLibrary.DirectionsRenderer({ map }))
   }, [routesLibrary, map]);
 
   useEffect(() => {
-    if (!directionService || !directionsRenderer) return;
+    if (!directionsService || !directionsRenderer) return;
 
-    directionService.route({
+    directionsService.route({
       origin: "san diego, CA",
       destination: "Los Angelas, CA",
       travelMode: google.maps.TravelMode.DRIVING,
       provideRouteAlternatives: true,
     })
-    .then(res => {
+    .then((res) => {
       directionsRenderer.setDirections(res);
-      setRoutes(response.routes);
+      setRoutes(res.routes);
 
     })
-  }, [directionService, directionsRenderer]);
+  }, [directionsService, directionsRenderer]);
 
   if (!leg) return null;
 

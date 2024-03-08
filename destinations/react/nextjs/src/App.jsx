@@ -4,19 +4,23 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MapSpace from './components/MapSpace';
 import CreateRoute from './components/CreateRoute'
 import NavBar from './components/navbar'
+import Directions from './components/Directions'
 
 export default function App() {
 
   return (
+   
     <BrowserRouter>
-      <Container data-bs-theme='dark'>
+      <Container >
         <NavBar  />
           <Routes>
           <Route path='/mapspace' element={<MapSpace />}/>
           <Route path='/createroute' element={<CreateRoute />}/>
+          <Route path='/directions' element={<Directions />}/>
           
         </Routes>
       </Container>
     </BrowserRouter>
+   
   )
 }

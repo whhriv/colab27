@@ -16,6 +16,7 @@ function NavBar() {
 
             <Nav.Link href="/CreateRoute">Create Route</Nav.Link>
             <Nav.Link href="/MapSpace">MapSpace</Nav.Link>
+            <Nav.Link href="/Directions">Directions</Nav.Link>
            
           </Nav>
        
