@@ -37,12 +37,12 @@ const AddRemoveStop = () => {
     
   };
 
-  const createRouteFunc = () => {
-    const startLocation = start;
-    const stops = fields.map(field => field.value);
-    console.log(stops);
-    console.log(startLocation);
-  };
+  // const createRouteFunc = () => {
+  //   const startLocation = start;
+  //   const stops = fields.map(field => field.value);
+  //   console.log(stops);
+  //   console.log(startLocation);
+  // };
 
   return (
     <div>

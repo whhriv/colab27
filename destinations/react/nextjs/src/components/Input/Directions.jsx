@@ -5,8 +5,9 @@ import {
   useMapsLibrary,
   useMap,
 } from "@vis.gl/react-google-maps"
+// import ParentComponent from '../ParentComponent'
 
-export default function DirectionMapSpace(start, stops) {
+export default function DirectionMapSpace(startLocation, stops) {
       const position = {
         lat: 32.748994,
         lng: -117.231647
@@ -25,7 +26,7 @@ export default function DirectionMapSpace(start, stops) {
 
 }
 
-function Directions( {start, stops }){
+function Directions( {startLocation, stops } ){
   const map = useMap();
   const routesLibrary = useMapsLibrary('routes')
   const [directionsService, setDirectionsService] = useState();
@@ -47,20 +48,9 @@ function Directions( {start, stops }){
 
     directionsService.route({
      
-      // origin: start,
-      // waypoints: [
-      //   { location: "oceanside, ca" }, 
-      //   { location: "temecula, ca" },
-      //   { location: stops }  
-      // ],
-
-      origin: start,
-      waypoints: [
-        { location: "oceanside, ca" }, 
-        { location: "temecula, ca" },
-        { location: 'San Diego, CA' }  
-    ],
-      destination: stops,
+      origin: startLocation,
+      waypoints: stops.map(stop => ({ location: stop })),
+      destination: stops[stops.length - 1],
       travelMode: google.maps.TravelMode.DRIVING,
       provideRouteAlternatives: true,
     })
@@ -73,10 +63,8 @@ function Directions( {start, stops }){
     .catch(error => {
         console.log(error("error fetching directions:", error))
     })
-  }, [directionsService, directionsRenderer]);
+  }, [directionsService, directionsRenderer, start, stops]);
 
- 
-
-
-
+ return null;
 }
+

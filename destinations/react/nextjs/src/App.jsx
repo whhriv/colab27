@@ -8,6 +8,8 @@ import Directions from './components/Input/Directions'
 import TabInputButton from './components/Input/TabInput';
 // import UserLocation from './components/UserLocation'
 import LocationSearch from './components/LocationSearch';
+import ParentComponent from './components/ParentComponent';
+
 
 export default function App() {
   const [startLocation, setStartLocation] = useState("");
@@ -24,6 +26,7 @@ export default function App() {
       <Container >
         <NavBar  />
           <Routes>
+          <Route path='/parentcomponent' element={<ParentComponent />}/>
           <Route path='/mapspace' element={<MapSpace />}/>
           <Route path='/createroute' element={<CreateRoute />}/>
           <Route path='/directions' element={<Directions />}/>
