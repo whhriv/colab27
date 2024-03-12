@@ -6,7 +6,7 @@ import {
   useMap,
 } from "@vis.gl/react-google-maps"
 
-export default function DirectionMapSpace() {
+export default function DirectionMapSpace(start, stops) {
       const position = {
         lat: 32.748994,
         lng: -117.231647
@@ -25,7 +25,7 @@ export default function DirectionMapSpace() {
 
 }
 
-function Directions(){
+function Directions( {start, stops }){
   const map = useMap();
   const routesLibrary = useMapsLibrary('routes')
   const [directionsService, setDirectionsService] = useState();
@@ -33,7 +33,7 @@ function Directions(){
   const [routes, setRoutes] = useState([])
   const [routeIndex, setRouteIndex] = useState(0);
   const selected = routes[routeIndex]
-  const leg = selected?.legs[0];
+  // const leg = selected?.legs[0];
 
 
   useEffect(() => {
@@ -46,13 +46,21 @@ function Directions(){
     if (!directionsService || !directionsRenderer) return;
 
     directionsService.route({
-      origin: "san diego, CA",
+     
+      // origin: start,
+      // waypoints: [
+      //   { location: "oceanside, ca" }, 
+      //   { location: "temecula, ca" },
+      //   { location: stops }  
+      // ],
+
+      origin: start,
       waypoints: [
         { location: "oceanside, ca" }, 
         { location: "temecula, ca" },
-        { location: "san clemente, ca" }  
+        { location: 'San Diego, CA' }  
     ],
-      destination: "Los Angelas, CA",
+      destination: stops,
       travelMode: google.maps.TravelMode.DRIVING,
       provideRouteAlternatives: true,
     })
@@ -67,11 +75,7 @@ function Directions(){
     })
   }, [directionsService, directionsRenderer]);
 
-  if (!leg) return null;
-
-  return <div className="directions">
-    <h2>{selected.summary}</h2>
-  </div>
+ 
 
 
 

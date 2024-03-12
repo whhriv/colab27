@@ -2,7 +2,7 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+// import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink } from 'react-router-dom';
 function NavBar() {
   return (
@@ -17,7 +17,9 @@ function NavBar() {
             <Nav.Link href="/CreateRoute">Create Route</Nav.Link>
             <Nav.Link href="/MapSpace">MapSpace</Nav.Link>
             <Nav.Link href="/Directions">Directions</Nav.Link>
-           
+            <Nav.Link href="/TabInputButton">Input Tests</Nav.Link>
+            <Nav.Link href="/LocationSearch">Location Search</Nav.Link>
+
           </Nav>
        
       </Container>
