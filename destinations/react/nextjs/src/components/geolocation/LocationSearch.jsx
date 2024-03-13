@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactGoogleAutocomplete from "react-google-autocomplete";
 import Button from 'react-bootstrap/Button'
-import geocodeAddress from '../../scripts/script'
+import geocodeAddress from '../../scripts/JSScripts'
 
 const LocationSearch = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);

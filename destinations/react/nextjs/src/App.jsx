@@ -10,7 +10,7 @@ import TabInputButton from './components/Input/TabInput';
 import LocationSearch from './components/geolocation/LocationSearch';
 import ParentComponent from './components/ParentComponent';
 import APIComponent from './components/geolocation/APIComponent'
-
+import GetDirectionMapOver from './components/geolocation/GetDirectionsMapOver';
 
 export default function App() {
   const [startLocation, setStartLocation] = useState("");
@@ -34,6 +34,7 @@ export default function App() {
           <Route path='/tabinputbutton' element={<TabInputButton />}/>
           <Route path='/locationsearch' element={<LocationSearch />}/>
           <Route path='/apicomponent' element={<APIComponent/>}/>
+          <Route path='/getdirectionsmapover' element={<GetDirectionMapOver/>}/>
           
         </Routes>
       </Container>

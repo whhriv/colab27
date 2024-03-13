@@ -1,6 +1,6 @@
-async function geocodeAddress() {
+async function geocodeAddress(address) {
     // const addressInput = document.getElementById('addressInput');
-    const address = '4318 valeta st. san diego, ca';
+    // const address = '4318 valeta st. san diego, ca';
   
     if (!address) {
       console.log('Please enter an address.');
@@ -34,6 +34,9 @@ async function geocodeAddress() {
     }
   }
   export default geocodeAddress()
+let myCoordinates = localStorage.setItem("MyCoordinates", geocodeAddress('San Diego, ca'))
 
-        // localStorage.setItem("APIdata", data)
-      // console.log('localstorage', data)
+geocodeAddress(myCoordinates)
+// let myCoodrinates = localStorage.setItem("MyCoordinates", geocodeAddress('San Diego, ca'))
+// localStorage.setItem("APIdata", data)
+// console.log(myCoodrinates)

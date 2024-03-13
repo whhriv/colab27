@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import ReactGoogleAutocomplete from "react-google-autocomplete";
+// import geocodeAddress from '../../scripts/JSScripts'
 
 const LocationSearch = () => {
   const [location, setLocation] = useState("");
-
+  // geocodeAddress('valeta st. san diego, ca')
   const handleChange = (event) => {
     setLocation(event.target.value);
   };

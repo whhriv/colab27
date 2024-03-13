@@ -35,7 +35,6 @@ function Directions( ){
   // const [routeIndex, setRouteIndex] = useState(0);
   // const selected = routes[routeIndex]
 
-
   useEffect(() => {
     if (!routesLibrary || !map) return;
     setDirectionsService(new routesLibrary.DirectionsService());
@@ -104,3 +103,4 @@ function DirectionsTwo( ){
   }, [directionsService, directionsRenderer]);
 
 }
+

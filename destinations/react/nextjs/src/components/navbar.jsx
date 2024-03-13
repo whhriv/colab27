@@ -21,6 +21,7 @@ function NavBar() {
             <Nav.Link href="/LocationSearch">Location Search</Nav.Link>
             <Nav.Link href="/ParentComponent">parent</Nav.Link>
             <Nav.Link href="/APIComponent">API</Nav.Link>
+            <Nav.Link href="/GetDirectionsMapOver">GDMO</Nav.Link>
 
           </Nav>
        
