@@ -10,6 +10,7 @@ const LocationSearch = () => {
   const googleAPIKey = 'AIzaSyDbUVVfWx2Ghaty0_o6toUor2W2UZLH1ro'
 
   return (
+  
     <div>
       <ReactGoogleAutocomplete
         apiKey={googleAPIKey}

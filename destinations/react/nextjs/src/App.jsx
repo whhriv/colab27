@@ -9,6 +9,7 @@ import TabInputButton from './components/Input/TabInput';
 // import UserLocation from './components/UserLocation'
 import LocationSearch from './components/LocationSearch';
 import ParentComponent from './components/ParentComponent';
+import APIComponent from './components/geolocation/APIComponent'
 
 
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
           <Route path='/directions' element={<Directions />}/>
           <Route path='/tabinputbutton' element={<TabInputButton />}/>
           <Route path='/locationsearch' element={<LocationSearch />}/>
+          <Route path='/apicomponent' element={<APIComponent/>}/>
           
         </Routes>
       </Container>

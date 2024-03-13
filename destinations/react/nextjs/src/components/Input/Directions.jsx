@@ -5,36 +5,35 @@ import {
   useMapsLibrary,
   useMap,
 } from "@vis.gl/react-google-maps"
-// import ParentComponent from '../ParentComponent'
 
-export default function DirectionMapSpace(startLocation, stops) {
-      const position = {
-        lat: 32.748994,
-        lng: -117.231647
-    }
+export default function DirectionMapSpace() {
+    //   const position = {
+    //     lat: 32.748994,
+    //     lng: -117.231647
+    // }
 
     return (
       <div style={{height: "100vh", width: "100%"}}>
         <APIProvider apiKey='AIzaSyAR-r8GJmwcm-9s2gqKkKHa3K4Km145a7Q'
         >
 
-          <Map  ></Map>
+          <Map><Directions/></Map>
             <Directions />
         </APIProvider>  
       </div>
     )
 
 }
-
-function Directions( {startLocation, stops } ){
+const startLoc = 'redding, ca'
+const destination = 'chico, ca'
+function Directions( ){
   const map = useMap();
   const routesLibrary = useMapsLibrary('routes')
   const [directionsService, setDirectionsService] = useState();
   const [directionsRenderer, setDirectionsRenderer] = useState();
   const [routes, setRoutes] = useState([])
-  const [routeIndex, setRouteIndex] = useState(0);
-  const selected = routes[routeIndex]
-  // const leg = selected?.legs[0];
+  // const [routeIndex, setRouteIndex] = useState(0);
+  // const selected = routes[routeIndex]
 
 
   useEffect(() => {
@@ -48,23 +47,21 @@ function Directions( {startLocation, stops } ){
 
     directionsService.route({
      
-      origin: startLocation,
-      waypoints: stops.map(stop => ({ location: stop })),
-      destination: stops[stops.length - 1],
+      origin: startLoc,
+      destination: destination,
       travelMode: google.maps.TravelMode.DRIVING,
       provideRouteAlternatives: true,
     })
     .then((res) => {
       directionsRenderer.setDirections(res);
+      console.log('routes', res)
       setRoutes(res.routes);
-      console.log(routes)
+      
 
     })
     .catch(error => {
         console.log(error("error fetching directions:", error))
     })
-  }, [directionsService, directionsRenderer, start, stops]);
+  }, [directionsService, directionsRenderer]);
 
- return null;
 }
-

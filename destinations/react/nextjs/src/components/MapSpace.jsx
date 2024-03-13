@@ -47,12 +47,7 @@ function Directions( {start, stops }){
 
     directionsService.route({
      
-      // origin: start,
-      // waypoints: [
-      //   { location: "oceanside, ca" }, 
-      //   { location: "temecula, ca" },
-      //   { location: stops }  
-      // ],
+
 
       origin: 'valeta st, san diego, ca',
       waypoints: [

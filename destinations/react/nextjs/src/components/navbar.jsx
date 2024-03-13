@@ -20,6 +20,7 @@ function NavBar() {
             <Nav.Link href="/TabInputButton">Input Tests</Nav.Link>
             <Nav.Link href="/LocationSearch">Location Search</Nav.Link>
             <Nav.Link href="/ParentComponent">parent</Nav.Link>
+            <Nav.Link href="/APIComponent">API</Nav.Link>
 
           </Nav>
        
