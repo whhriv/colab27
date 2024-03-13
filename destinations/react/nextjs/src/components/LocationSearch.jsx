@@ -7,6 +7,7 @@ const LocationSearch = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
+  const [apiDataStored, setApiDataStored] = useState(null);
 
   const handlePlaceSelect = (place) => {
     
@@ -20,45 +21,49 @@ const LocationSearch = () => {
     setLongitude(lng);
   };
 }
-// async function geocodeAddress() {
-//   // const addressInput = document.getElementById('addressInput');
-//   const address = '4318 valeta st. san diego, ca';
+async function geocodeAddress() {
+  // const addressInput = document.getElementById('addressInput');
+  const address = '4318 valeta st. san diego, ca';
 
-//   if (!address) {
-//     console.log('Please enter an address.');
-//     return;
-//   }
+  if (!address) {
+    console.log('Please enter an address.');
+    return;
+  }
 
  
-//   const apiKey = 'AIzaSyDbUVVfWx2Ghaty0_o6toUor2W2UZLH1ro';
-//   const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+  const apiKey = 'AIzaSyDbUVVfWx2Ghaty0_o6toUor2W2UZLH1ro';
+  const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
-//   try {
+  try {
 
-//     const response = await fetch(apiUrl);
-//     const data = await response.json();
+    const response = await fetch(apiUrl);
+    const data = await response.json();
 
-//     if (data.status === 'OK') {
-//       // Extract latitude and longitude from the response
-//       const location = data.results[0].geometry.location;
-//       const latitude = location.lat;
-//       const longitude = location.lng;
+    if (data.status === 'OK') {
+      // Extract latitude and longitude from the response
+      console.log(data)
+      const location = data.results[0].geometry.location;
+      const latitude = location.lat;
+      console.log('print', latitude)
+      const longitude = location.lng;
+      console.log(location)
+      setApiDataStored(data)
 
-//       // Output the coordinates
-//       console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-//     } else {
-//       console.error(`Error: ${data.status}`);
-//     }
-//   } catch (error) {
-//     console.error('Error fetching geocoding data:', error);
-//   }
-// }
+      // Output the coordinates
+      console.log(`From Da App Latitude: ${latitude}, Longitude: ${longitude}`);
+    } else {
+      console.error(`Error: ${data.status}`);
+    }
+  } catch (error) {
+    console.error('Error fetching geocoding data:', error);
+  }
+}
 
 
 // const handleSubmit = () => {
 //   geocodeAddress()
 // }
-
+// let ApiDataStored = localStorage.getItem("APIdata")
 const apiKey = 'AIzaSyDbUVVfWx2Ghaty0_o6toUor2W2UZLH1ro'
   return (
     <div>
@@ -67,12 +72,20 @@ const apiKey = 'AIzaSyDbUVVfWx2Ghaty0_o6toUor2W2UZLH1ro'
         placeholder="Enter a location"
         onSelect={handlePlaceSelect}
       />
-      <p>Selected location: {selectedPlace ? selectedPlace.formatted_address : ""}</p>
-      <p>Latitude: {latitude}</p>
-      <p>Longitude: {longitude}</p>
-      <Button type="submit" onClick={geocodeAddress} >Engage</Button>
+      
+
+      <p>API Data: {JSON.stringify(apiDataStored)}</p>
+      <p>asdfl {JSON.stringify(apiDataStored)}</p>
+
+      <Button type="submit" onClick={geocodeAddress}>Engage</Button>
+      
     </div>
+   
   );
 };
 
 export default LocationSearch;
+
+// <p>Formatted Address: {apiDataStored.results[0].formatted_address}</p> 
+// <p>Latitude: {apiDataStored.results[0].geometry.location.lat}</p>
+// <p>Longitude: {apiDataStored.results[0].geometry.location.lng}</p>

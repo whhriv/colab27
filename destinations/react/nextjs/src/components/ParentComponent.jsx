@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import AddRemoveStop from "./AddRemoveStop";
 import DirectionMapSpace from "./MapSpace";
-// import DirectionMapSpace from "./DirectionMapSpace";
 
 function ParentComponent() {
   const [start, setStart] = useState("");

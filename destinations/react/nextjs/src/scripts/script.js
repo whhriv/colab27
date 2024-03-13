@@ -34,3 +34,6 @@ async function geocodeAddress() {
     }
   }
   export default geocodeAddress()
+
+        // localStorage.setItem("APIdata", data)
+      // console.log('localstorage', data)
