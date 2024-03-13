@@ -1,13 +1,13 @@
 import Container from 'react-bootstrap/Container';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import MapSpace from './components/MapSpace';
-import CreateRoute from './components/AddRemoveStop'
+import MapSpace from './components/Mapping/MapSpace';
+import CreateRoute from './components/Input/AddRemoveStop'
 import NavBar from './components/navbar'
-import Directions from './components/Input/Directions'
+import Directions from './components/Mapping/Directions'
 import TabInputButton from './components/Input/TabInput';
 // import UserLocation from './components/UserLocation'
-import LocationSearch from './components/LocationSearch';
+import LocationSearch from './components/geolocation/LocationSearch';
 import ParentComponent from './components/ParentComponent';
 import APIComponent from './components/geolocation/APIComponent'
 
