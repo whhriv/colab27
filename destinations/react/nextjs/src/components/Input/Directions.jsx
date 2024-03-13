@@ -17,8 +17,8 @@ export default function DirectionMapSpace() {
         <APIProvider apiKey='AIzaSyAR-r8GJmwcm-9s2gqKkKHa3K4Km145a7Q'
         >
 
-          <Map><Directions/></Map>
-            <Directions />
+          <Map><Directions/><DirectionsTwo /></Map>
+           
         </APIProvider>  
       </div>
     )
@@ -49,6 +49,45 @@ function Directions( ){
      
       origin: startLoc,
       destination: destination,
+      travelMode: google.maps.TravelMode.DRIVING,
+      provideRouteAlternatives: true,
+    })
+    .then((res) => {
+      directionsRenderer.setDirections(res);
+      console.log('routes', res)
+      setRoutes(res.routes);
+      
+
+    })
+    .catch(error => {
+        console.log(error("error fetching directions:", error))
+    })
+  }, [directionsService, directionsRenderer]);
+
+}
+function DirectionsTwo( ){
+  const map = useMap();
+  const routesLibrary = useMapsLibrary('routes')
+  const [directionsService, setDirectionsService] = useState();
+  const [directionsRenderer, setDirectionsRenderer] = useState();
+  const [routes, setRoutes] = useState([])
+  // const [routeIndex, setRouteIndex] = useState(0);
+  // const selected = routes[routeIndex]
+
+
+  useEffect(() => {
+    if (!routesLibrary || !map) return;
+    setDirectionsService(new routesLibrary.DirectionsService());
+    setDirectionsRenderer(new routesLibrary.DirectionsRenderer({ map }))
+  }, [routesLibrary, map]);
+
+  useEffect(() => {
+    if (!directionsService || !directionsRenderer) return;
+
+    directionsService.route({
+     
+      origin: 'Orland, CA',
+      destination: 'Igo, CA',
       travelMode: google.maps.TravelMode.DRIVING,
       provideRouteAlternatives: true,
     })
