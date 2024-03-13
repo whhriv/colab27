@@ -1,14 +1,20 @@
 import { useState, useEffect } from 'react'
 import { APIProvider, Map, useMapsLibrary, useMap } from "@vis.gl/react-google-maps"
 
+
+//STRETCH is being used here, as it gets repetative using "routes" when using react
+// routes to create a bunch of routes for a routing app mapping routes of mapped routes on
+// some maps.  
+// What I mean to say is STRETCH= Origin->destination, or it is the actual route
+
 export default function GetDirectionMapOver() {
     const stretch = {
         "strech1": { origin: "San Diego, CA", destination: "Temecula, CA" },
-        "stretch2": { origin: "Poway, CA", destination: "Oceanside, CA" },
-        // Add more stretch as needed
+        "stretch2": { origin: "Poway, CA", destination: "Oceanside, CA" }
+
     };
 
-    // Call the getDirections function with the DirectionsX function and stretch dictionary
+
     const directionsMap = getDirections(DirectionsX, stretch);
 
     return (
