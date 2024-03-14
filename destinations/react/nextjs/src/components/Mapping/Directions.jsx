@@ -5,6 +5,8 @@ import {
   useMapsLibrary,
   useMap,
 } from "@vis.gl/react-google-maps"
+import { getWaypointArray } from '../../scripts/waypointFromString';
+import { getRouteTime } from '../../scripts/compareRoutes';
 
 export default function DirectionMapSpace() {
     //   const position = {

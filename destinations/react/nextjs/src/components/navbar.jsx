@@ -22,6 +22,7 @@ function NavBar() {
             <Nav.Link href="/ParentComponent">parent</Nav.Link>
             <Nav.Link href="/APIComponent">API</Nav.Link>
             <Nav.Link href="/GetDirectionsMapOver">GDMO</Nav.Link>
+            <Nav.Link href="/addremovestopoutside">ARSO</Nav.Link>
 
           </Nav>
        

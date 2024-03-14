@@ -11,10 +11,16 @@ import LocationSearch from './components/geolocation/LocationSearch';
 import ParentComponent from './components/ParentComponent';
 import APIComponent from './components/geolocation/APIComponent'
 import GetDirectionMapOver from './components/geolocation/GetDirectionsMapOver';
+import AddRemoveStop from './AddRemoveStopOutside'
 
 export default function App() {
-  const [startLocation, setStartLocation] = useState("");
-  const [stops, setStops] = useState([]);
+  const [responses, setResponses] = useState(null)
+
+  const handleResponsesChange = (newResponses) => {
+    setResponses(newResponses)
+  }
+
+
 
   const handleFormSubmit = (start, stops) => {
     setStartLocation(start);
@@ -35,6 +41,7 @@ export default function App() {
           <Route path='/locationsearch' element={<LocationSearch />}/>
           <Route path='/apicomponent' element={<APIComponent/>}/>
           <Route path='/getdirectionsmapover' element={<GetDirectionMapOver/>}/>
+          <Route path='/addremovestopoutside' element={<AddRemoveStop onResponseChange={handleResponsesChange}/>}/>
           
         </Routes>
       </Container>
