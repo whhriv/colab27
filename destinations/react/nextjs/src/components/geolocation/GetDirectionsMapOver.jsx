@@ -83,6 +83,7 @@ function DirectionsX({ stretch, stretches }) {
 
     // Return null here or JSX for rendering the directions, depending on your needs
     // console.log(getRouteTime(stretches))
+    // console.log('TIMES', sessionStorage.getItem(TIME1, TIME2))
     return null;
     
 }
