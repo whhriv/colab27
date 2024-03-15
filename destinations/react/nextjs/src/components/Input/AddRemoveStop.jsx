@@ -1,4 +1,4 @@
-//CONNOR CODE 3/13
+
 import React, { useState, createContext, useContext } from "react";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
@@ -107,10 +107,6 @@ const handleFormSubmit = (e) => {
   // console.log(dataResponse)
   navigate('/GetDirectionsMapOver');
 };
-
-
-  
-
 
 
   return (

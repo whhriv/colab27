@@ -18,6 +18,7 @@ export default function GetDirectionMapOver() {
             }
         }
         setStretches(storedStretches);
+        getSessionStorageData()
         
     }, []);
 
@@ -76,7 +77,6 @@ function DirectionsX({ stretch, stretches }) {
                     })
 
 
-
     }, [directionsService, directionsRenderer, stretch]);
 
     // Return null here or JSX for rendering the directions, depending on your needs
@@ -86,7 +86,29 @@ function DirectionsX({ stretch, stretches }) {
     
 }
 // console.log(getRouteTime(stretches))
-
+function getSessionStorageData() {
+    const sessionStorageData = {};
+  
+    for (let i = 1; i <= sessionStorage.length; i++) {
+      const stretch = JSON.parse(sessionStorage.getItem(`stretches${i}`));
+      const origin = JSON.parse(sessionStorage.getItem(`origin${i}`));
+      const destination = JSON.parse(sessionStorage.getItem(`destination${i}`));
+      const time = JSON.parse(sessionStorage.getItem(`TIME${i}`));
+  
+      sessionStorageData[`stretch${i}`] = {
+        origin,
+        destination,
+        time
+      };
+    }
+  
+    return sessionStorageData;
+  }
+  
+getSessionStorageData()
+  const sessionStorageData = getSessionStorageData();
+  console.log(sessionStorageData);
+  
 
 
 
