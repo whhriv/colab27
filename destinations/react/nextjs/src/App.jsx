@@ -35,7 +35,7 @@ export default function App() {
           <Routes>
           <Route path='/parentcomponent' element={<ParentComponent />}/>
           <Route path='/mapspace' element={<MapSpace />}/>
-          <Route path='/createroute' element={<CreateRoute />}/>
+          <Route path='/createroute' element={<CreateRoute onResponseChange={handleResponsesChange} />}/>
           <Route path='/directions' element={<Directions />}/>
           <Route path='/tabinputbutton' element={<TabInputButton />}/>
           <Route path='/locationsearch' element={<LocationSearch />}/>

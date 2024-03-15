@@ -4,9 +4,10 @@ import { getRouteTime } from '../../scripts/compareRoutes';
 
 export default function GetDirectionMapOver() {
     const [stretches, setStretches] = useState([]);
+    // const [responses, setResponses] = useState(null)
 
     
-
+// METHOD LACKS TIME - FOR SENDING DATA IN MAP
     useEffect(() => {
         // Retrieve stretches from sessionStorage and convert to array
         const storedStretches = [];
@@ -17,7 +18,8 @@ export default function GetDirectionMapOver() {
                 storedStretches.push(JSON.parse(storedItem));
             }
         }
-        setStretches(storedStretches);
+        console.log(':::STORED STRETCHES::: for MAP', storedStretches)
+        setStretches(storedStretches); //  LACKING TIME 
         getSessionStorageData()
         
     }, []);
@@ -63,6 +65,7 @@ function DirectionsX({ stretch, stretches }) {
             directionsRenderer.setDirections(res);
             console.log('routes', res)
             setRoutes(res.routes);
+            console.log('sessionStorageData.stretch2.time', sessionStorageData.stretch2.time)
         })
         .catch(error => {
             console.log("error fetching directions:", error)
@@ -88,27 +91,29 @@ function DirectionsX({ stretch, stretches }) {
 // console.log(getRouteTime(stretches))
 function getSessionStorageData() {
     const sessionStorageData = {};
-  
+
     for (let i = 1; i <= sessionStorage.length; i++) {
-      const stretch = JSON.parse(sessionStorage.getItem(`stretches${i}`));
-      const origin = JSON.parse(sessionStorage.getItem(`origin${i}`));
-      const destination = JSON.parse(sessionStorage.getItem(`destination${i}`));
-      const time = JSON.parse(sessionStorage.getItem(`TIME${i}`));
-  
-      sessionStorageData[`stretch${i}`] = {
+        const stretch = JSON.parse(sessionStorage.getItem(`stretches${i}`));
+        const origin = JSON.parse(sessionStorage.getItem(`origin${i}`));
+        const destination = JSON.parse(sessionStorage.getItem(`destination${i}`));
+        const time = JSON.parse(sessionStorage.getItem(`TIME${i}`));
+
+sessionStorageData[`stretch${i}`] = {
         origin,
         destination,
         time
       };
     }
-  
+
     return sessionStorageData;
-  }
-  
+}
+
 getSessionStorageData()
-  const sessionStorageData = getSessionStorageData();
-  console.log(sessionStorageData);
-  
+const sessionStorageData = getSessionStorageData();
+console.log(sessionStorageData); // console.log of OBJECT - first to print.
+console.log(':::OUTPUT::: COMPILED ARRAY', sessionStorageData);
+console.log(sessionStorageData.stretch4.time)
+
 
 
 
