@@ -1,19 +1,24 @@
 import { useState, useEffect } from 'react';
 import { APIProvider, Map, useMapsLibrary, useMap } from "@vis.gl/react-google-maps";
+import { getRouteTime } from '../../scripts/compareRoutes';
 
 export default function GetDirectionMapOver() {
     const [stretches, setStretches] = useState([]);
+
+    
 
     useEffect(() => {
         // Retrieve stretches from sessionStorage and convert to array
         const storedStretches = [];
         for (let i = 1; i <= sessionStorage.length; i++) {
             const storedItem = sessionStorage.getItem(`stretches${i}`);
+            
             if (storedItem) {
                 storedStretches.push(JSON.parse(storedItem));
             }
         }
         setStretches(storedStretches);
+        
     }, []);
 
     return (
@@ -29,12 +34,14 @@ export default function GetDirectionMapOver() {
     );
 }
 
-function DirectionsX({ stretch }) {
+function DirectionsX({ stretch, stretches }) {
     const map = useMap();
     const routesLibrary = useMapsLibrary('routes');
     const [directionsService, setDirectionsService] = useState();
     const [directionsRenderer, setDirectionsRenderer] = useState();
     const [routes, setRoutes] = useState([]);
+
+    // console.log(getRouteTime(stretches))
 
     useEffect(() => {
         if (!routesLibrary || !map) return;
@@ -44,6 +51,8 @@ function DirectionsX({ stretch }) {
 
     useEffect(() => {
         if (!directionsService || !directionsRenderer || !stretch) return;
+
+        
 
         directionsService.route({
             origin: stretch.origin,
@@ -59,11 +68,25 @@ function DirectionsX({ stretch }) {
         .catch(error => {
             console.log("error fetching directions:", error)
         })
+
+                getRouteTime(stretch.origin, stretch.destination, directionsService)
+                    .then(totalTime => {
+                        console.log('total Route Time:', totalTime)
+                    })
+                    .catch(error => {
+                        console.error('error calc route times', error)
+                    })
+
+
+
     }, [directionsService, directionsRenderer, stretch]);
 
     // Return null here or JSX for rendering the directions, depending on your needs
+    // console.log(getRouteTime(stretches))
     return null;
+    
 }
+// console.log(getRouteTime(stretches))
 
 
 
