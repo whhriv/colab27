@@ -93,6 +93,11 @@ const handleFormSubmit = (e) => {
               sessionStorage.setItem(`destination${i + 1}`, JSON.stringify(responses[i].request.destination));
               console.log('DESTINATION-LOOP', sessionStorage.getItem(`destination${i + 1}`));
             }
+            // for (let i = 0; i < responses.length; i++) {
+            //   sessionStorage.setItem(`seconds${i + 1}`, JSON.stringify(responses[i].routes[i].legs[i].duration));
+            //   console.log('Time-Loooop', sessionStorage.getItem(`seconds${i + 1}`));
+
+            // }
 
 
     })
@@ -147,67 +152,3 @@ const handleFormSubmit = (e) => {
 };
 
 export default AddRemoveStop;
-
-// const handleFormSubmit = (e) => {
-  //   e.preventDefault();
-  //   const startLocation = start;
-  //   const stops = fields.map(field => (field.value));
-  //   console.log('Stop Point Dict', stops);
-  //   console.log('start location',startLocation);
-
-  // const handleFormSubmit = (e) => {
-  //   e.preventDefault();
-  
-  //   const stops = fields.map((field) => field.value);
-  //   sessionStorage.setItem("waypoints", JSON.stringify(stops));
-  //   console.log("waypoints:", sessionStorage.getItem("waypoints"));
-  
-  //   navigate("/GetDirectionsMapOver");
-  // };  
-  
-  // const handleFormSubmit = (e) => {
-  //     e.preventDefault();
-  
-  //     let startingLocation = start;
-  //     const stops = fields.map(field => (field.value));
-      
-  //     const stopDict = {};
-  //     for (let i = 0; i < stops.length; i++) {
-  //         stopDict[`stretch${i + 1}`] = {
-  //             origin: startingLocation,
-  //             destination: stops[i]
-  //         };
-  //         startingLocation = stops[i];
-  //         //starting=start weird error throw in react for double dipping on them variables
-
-  //     }
-  //     console.log('STRETCH Dict:', stopDict);
-  
-  //     sessionStorage.setItem("waypoints", JSON.stringify(stopDict));
-  //     console.log("stopDict stringify sessionStorage", sessionStorage.getItem("waypoints"));
-  
-
-  //     sessionStorage.setItem("tests", JSON.stringify(stopDict));
-  //     let testsOfStorage = sessionStorage.getItem("tests")
-  //     // let jsnifd = JSON.jsonify(testsOfStorage)
-  //     // console.log("JSONified back", jsnifd)
-
-  //     console.log(testsOfStorage, "testsofstorageVariable!!!!")
-  //     console.log("TESTS", sessionStorage.getItem("tests"));
-  //     // navigate('/MapSpace');
-  //     // navigate('/GetDirectionsMapOver');
-  
-  //   // }
-
-  //   console.log(stops);
-
-  //   // for(let i=0;i<stops.length;i++){
-  //   //   stops[i]+="~"
-  //   // }
-
-  //   sessionStorage.setItem("waypoints",stops);
-  //   console.log(sessionStorage.getItem("waypoints"))
-  //   // navigate('/MapSpace')
-  //   navigate('/GetDirectionsMapOver')
-    
-  // };
