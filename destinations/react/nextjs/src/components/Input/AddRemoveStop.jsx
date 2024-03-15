@@ -72,7 +72,7 @@ const handleFormSubmit = (e) => {
   Promise.all(directionsPromises)
     .then((responses) => {
       // DATA RETREIVAL AND HANDLING
-      console.log('DIRECTION RESPONSES:', responses)
+      // console.log('DIRECTION RESPONSES:', responses)
       console.log('DIRECTION RESPONSES[0].request:', responses[0].request)
 
       setResponses(responses)
@@ -82,16 +82,16 @@ const handleFormSubmit = (e) => {
 // let dataResponse = responses
             for (let i = 0; i < responses.length; i++) {
               sessionStorage.setItem(`stretches${i + 1}`, JSON.stringify(responses[i].request));
-              console.log('STRETCHES-LOOP', sessionStorage.getItem(`stretches${i + 1}`));
+              // console.log('STRETCHES-LOOP', sessionStorage.getItem(`stretches${i + 1}`));
             }
 
             for (let i = 0; i < responses.length; i++) {
               sessionStorage.setItem(`origin${i + 1}`, JSON.stringify(responses[i].request.origin));
-              console.log('ORIGIN-LOOP', sessionStorage.getItem(`origin${i + 1}`));
+              // console.log('ORIGIN-LOOP', sessionStorage.getItem(`origin${i + 1}`));
             }
             for (let i = 0; i < responses.length; i++) {
               sessionStorage.setItem(`destination${i + 1}`, JSON.stringify(responses[i].request.destination));
-              console.log('DESTINATION-LOOP', sessionStorage.getItem(`destination${i + 1}`));
+              // console.log('DESTINATION-LOOP', sessionStorage.getItem(`destination${i + 1}`));
             }
             // for (let i = 0; i < responses.length; i++) {
             //   sessionStorage.setItem(`seconds${i + 1}`, JSON.stringify(responses[i].routes[i].legs[i].duration));

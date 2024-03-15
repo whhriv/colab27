@@ -41,24 +41,24 @@ geocodeAddress(myCoordinates)
 // localStorage.setItem("APIdata", data)
 // console.log(myCoodrinates)
 
-function getSessionStorageData() {
-  const sessionStorageData = {};
+// function getSessionStorageData() {
+//   const sessionStorageData = {};
 
-  for (let i = 1; i <= sessionStorage.length; i++) {
-    const stretch = JSON.parse(sessionStorage.getItem(`stretches${i}`));
-    const origin = JSON.parse(sessionStorage.getItem(`origin${i}`));
-    const destination = JSON.parse(sessionStorage.getItem(`destination${i}`));
-    const time = JSON.parse(sessionStorage.getItem(`TIME${i}`));
+//   for (let i = 1; i <= sessionStorage.length; i++) {
+//     const stretch = JSON.parse(sessionStorage.getItem(`stretches${i}`));
+//     const origin = JSON.parse(sessionStorage.getItem(`origin${i}`));
+//     const destination = JSON.parse(sessionStorage.getItem(`destination${i}`));
+//     const time = JSON.parse(sessionStorage.getItem(`TIME${i}`));
 
-    sessionStorageData[`stretch${i}`] = {
-      origin,
-      destination,
-      time
-    };
-  }
+//     sessionStorageData[`stretch${i}`] = {
+//       origin,
+//       destination,
+//       time
+//     };
+//   }
 
-  return sessionStorageData;
-}
+//   return sessionStorageData;
+// }
 
-const sessionStorageData = getSessionStorageData();
-console.log(sessionStorageData);
+// const sessionStorageData = getSessionStorageData();
+// console.log(sessionStorageData);

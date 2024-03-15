@@ -15,13 +15,13 @@ export async function getRouteTime(start, end, directionsService){
 
         let durationSum=0;
         let minuteSum=0;
-
+//ONLY GETTING TIMES TO STRETCH3, NULL AFTER
         for(let i=0;i<res.routes.length;i++){
         for(let j=0; j< res.routes[i].legs.length;j++){
             durationSum= durationSum+res.routes[i].legs[j].duration.value;
             minuteSum= minuteSum+Math.ceil(res.routes[i].legs[j].duration.value/60);
             sessionStorage.setItem(`TIME${i + 1}`, JSON.stringify(res.routes[i].legs[j].duration.value));
-            console.log(`TIME-loop${[i]}`, sessionStorage.getItem(`TIME${i + 1}`));
+            console.log(`TIME-loop ${[i]}`, sessionStorage.getItem(`TIME${i + 1}`));
             // for (let k = 0; k < res.routes.length; k++) {
             //     sessionStorage.setItem(`TIME${k + 1}`, JSON.stringify(responses[k].request.origin));
             //     console.log('TIME-loop', sessionStorage.getItem(`TIME${k + 1}`));

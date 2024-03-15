@@ -63,7 +63,7 @@ function DirectionsX({ stretch, stretches }) {
         })
         .then((res) => {
             directionsRenderer.setDirections(res);
-            console.log('routes', res)
+            console.log('ROUTES from stretches-map?', res)
             setRoutes(res.routes);
             console.log('sessionStorageData.stretch2.time', sessionStorageData.stretch2.time)
         })
