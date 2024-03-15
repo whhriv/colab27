@@ -89,6 +89,8 @@ function DirectionsX({ stretch, stretches }) {
     
 }
 // console.log(getRouteTime(stretches))
+
+// CREATE OBJECT FROM STORED DATA
 function getSessionStorageData() {
     const sessionStorageData = {};
 
