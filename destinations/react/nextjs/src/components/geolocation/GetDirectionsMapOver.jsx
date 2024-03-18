@@ -114,7 +114,10 @@ getSessionStorageData()
 const sessionStorageData = getSessionStorageData();
 console.log(sessionStorageData); // console.log of OBJECT - first to print.
 console.log(':::OUTPUT::: COMPILED ARRAY', sessionStorageData);
-console.log(sessionStorageData.stretch4.time)
+// for (let i=0; i<sessionStorageData.length; i++) {
+//     console.log(`time ${i} :`, sessionStorageData.time[i])
+// }
+// console.log(sessionStorageData.stretch4.time)
 
 
 

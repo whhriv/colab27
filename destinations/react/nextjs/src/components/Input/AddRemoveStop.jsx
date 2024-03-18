@@ -3,8 +3,8 @@ import React, { useState, createContext, useContext } from "react";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import {useNavigate } from 'react-router-dom'
-import GetDirectionMapOver from "../geolocation/GetDirectionsMapOver";
+import { useNavigate } from 'react-router-dom'
+// import GetDirectionMapOver from "../geolocation/GetDirectionsMapOver";
 
 // const ResponsesContext = createContext(null)
 
@@ -61,6 +61,7 @@ const handleFormSubmit = (e) => {
       directionsService.route(request, (response, status) => {
         if (status === 'OK') {
           resolve(response);
+          // console.log('ARS:: fetch response', response) // CHECK THIS
         } else {
           reject(new Error(`Error fetching directions: ${status}`));
         }
