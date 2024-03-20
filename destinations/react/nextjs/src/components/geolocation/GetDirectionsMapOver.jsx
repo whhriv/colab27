@@ -61,36 +61,39 @@ function DirectionsX({ stretch, stretches }) {
             travelMode: google.maps.TravelMode.DRIVING,
             provideRouteAlternatives: true,
         })
+        
+        // RESPONSE OF ROUTES
         .then((res) => {
             directionsRenderer.setDirections(res);
-            console.log('ROUTES from stretches-map?', res)
+
+            // SETS useSTATE OF ROUTES
+            console.log('ROUTES RESPONSE ', res)
             setRoutes(res.routes);
-            console.log('sessionStorageData.stretch2.time', sessionStorageData.stretch2.time)
+            // console.log('sessionStorageData.stretch2.time', sessionStorageData.stretch2.time)
         })
         .catch(error => {
             console.log("error fetching directions:", error)
         })
 
-                getRouteTime(stretch.origin, stretch.destination, directionsService)
-                    .then(totalTime => {
-                        console.log('total Route Time:', totalTime)
-                    })
-                    .catch(error => {
-                        console.error('error calc route times', error)
-                    })
+                // getRouteTime(stretch.origin, stretch.destination, directionsService)
+                //     .then(totalTime => {
+                //         console.log('total Route Time:', totalTime)
+                //     })
+                //     .catch(error => {
+                //         console.error('error calc route times', error)
+                //     })
 
 
     }, [directionsService, directionsRenderer, stretch]);
 
-    // Return null here or JSX for rendering the directions, depending on your needs
-    // console.log(getRouteTime(stretches))
-    // console.log('TIMES', sessionStorage.getItem(TIME1, TIME2))
     return null;
     
 }
 // console.log(getRouteTime(stretches))
 
 // CREATE OBJECT FROM STORED DATA
+
+
 function getSessionStorageData() {
     const sessionStorageData = {};
 
@@ -98,26 +101,112 @@ function getSessionStorageData() {
         const stretch = JSON.parse(sessionStorage.getItem(`stretches${i}`));
         const origin = JSON.parse(sessionStorage.getItem(`origin${i}`));
         const destination = JSON.parse(sessionStorage.getItem(`destination${i}`));
-        const time = JSON.parse(sessionStorage.getItem(`TIME${i}`));
+        const time = JSON.parse(sessionStorage.getItem(`seconds${i}`));
 
-sessionStorageData[`stretch${i}`] = {
-        origin,
-        destination,
-        time
-      };
+        sessionStorageData[`stretch${i}`] = {
+            origin,
+            destination,
+            time
+        };
     }
-
+    console.log('SESSION STORAGE DATA', sessionStorageData)
     return sessionStorageData;
 }
 
-getSessionStorageData()
 const sessionStorageData = getSessionStorageData();
-console.log(sessionStorageData); // console.log of OBJECT - first to print.
-console.log(':::OUTPUT::: COMPILED ARRAY', sessionStorageData);
-// for (let i=0; i<sessionStorageData.length; i++) {
-//     console.log(`time ${i} :`, sessionStorageData.time[i])
+console.log(sessionStorageData);
+
+
+
+// const origins = Object.values(sessionStorageData).map(data => data.origin);
+// const destinations = Object.values(sessionStorageData).map(data => data.destination);
+
+
+// function findAllPermutations(origins, destinations) {
+//     const permutations = [];
+
+//     function generatePermutations(prefix, remainingOrigins, remainingDestinations) {
+//         if (remainingOrigins.length === 0 && remainingDestinations.length === 0) {
+//             permutations.push(prefix);
+//             return;
+//         }
+
+//         for (let i = 0; i < remainingOrigins.length; i++) {
+//             for (let j = 0; j < remainingDestinations.length; j++) {
+//                 const newPrefix = [...prefix, { origin: remainingOrigins[i], destination: remainingDestinations[j] }];
+//                 const newRemainingOrigins = remainingOrigins.slice(0, i).concat(remainingOrigins.slice(i + 1));
+//                 const newRemainingDestinations = remainingDestinations.slice(0, j).concat(remainingDestinations.slice(j + 1));
+//                 generatePermutations(newPrefix, newRemainingOrigins, newRemainingDestinations);
+//             }
+//         }
+//     }
+
+//     generatePermutations([], origins, destinations);
+
+//     return permutations;
 // }
-// console.log(sessionStorageData.stretch4.time)
+
+// const permutations = findAllPermutations(origins, destinations);
+// console.log(permutations);
+
+
+
+
+
+
+
+
+
+// getSessionStorageData()
+// const sessionStorageData = getSessionStorageData();
+// console.log(sessionStorageData); // console.log of OBJECT - first to print.
+// console.log(':::OUTPUT::: COMPILED ARRAY', sessionStorageData);
+// // for (let i=0; i<sessionStorageData.length; i++) {
+// //     console.log(`time ${i} :`, sessionStorageData.time[i])
+// // }
+// // console.log(sessionStorageData.stretch4.time)
+
+// function findAllPermutations(origins, destinations) {
+//     const permutations = [];
+
+//     // RECURSIVE PERMUTATION GENERATION
+//     function generatePermutations(prefix, remainingOrigins, remainingDestinations) {
+
+//         if (remainingOrigins.length === 0 && remainingDestinations.length === 0) {
+//             permutations.push(prefix);
+//             return;
+//         }
+
+//         for (let i = 0; i < remainingOrigins.length; i++) {
+//             for (let j = 0; j < remainingDestinations.length; j++) {
+//                 const newPrefix = [...prefix, { origin: remainingOrigins[i], destination: remainingDestinations[j] }];
+//                 const newRemainingOrigins = remainingOrigins.slice(0, i).concat(remainingOrigins.slice(i + 1));
+//                 const newRemainingDestinations = remainingDestinations.slice(0, j).concat(remainingDestinations.slice(j + 1));
+//                 generatePermutations(newPrefix, newRemainingOrigins, newRemainingDestinations);
+//             }
+//         }
+//     }
+
+//     /
+//     generatePermutations([], origins, destinations);
+
+//     return permutations;
+// }
+
+// // Example usage:
+// const origins = sessionStorageData.stretches.origin // ['A', 'B', 'C'];
+// const destinations = sessionStorageData.stretches.destination       // ['X', 'Y', 'Z'];
+// const result = findAllPermutations(origins, destinations);
+// console.log(result);
+
+// const sessionStorageData = getSessionStorageData();
+// const origins = Object.values(sessionStorageData).map(data => data.origin);
+// const destinations = Object.values(sessionStorageData).map(data => data.destination);
+// const permutations = findAllPermutations(origins, destinations);
+
+
+// console.log(permutations);
+
 
 
 

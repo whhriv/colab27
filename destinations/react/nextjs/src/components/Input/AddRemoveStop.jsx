@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 const AddRemoveStop = () => {
   const [fields, setFields] = useState([{ label: "Stop", type: "text" }]);
   const [start, setStart] = useState("");
+  const [loading, setLoading] = useState(false)
   
   const ResponsesContext = createContext(null)
   const [responses, setResponses] = useState(null)
@@ -29,29 +30,51 @@ const AddRemoveStop = () => {
   const handleChange = (index, event) => {
     const updatedFields = [...fields];
     updatedFields[index].value = event.target.value;
-    console.log(updatedFields)
+    console.log('UPDATING STOPS', updatedFields)
     setFields(updatedFields);
   };
 // Saves Start and Stop  Variables
 
 const handleFormSubmit = (e) => {
   e.preventDefault();
+  setLoading(true)
 
   let startingLocation = start;
   const stops = fields.map((field) => field.value);
   
+  
+  
+  const permutations = permute(stops)
+  let fastestTime = Infinity
+  let fastestRoute = []
+      permutations.forEach(async (perm) => {
+        const totalTime = await calculateRouteTime(startingLocation, perm, startingLocation)
+          if (totalTime < fastestTime) {
+            fastestTime = totalTime
+            fastestRoute = perm
+          }
+      })
+
+
+
   const directionsRequests = [];
 
   for (let i = 0; i < stops.length; i++) {
+
+    for (let j=0; j<stops.length; j++) {
+
+    if ( j!= i ) {
     const request = {
       origin: startingLocation, // Ensure origin is a string
-      destination: stops[i],   // Ensure destination is a string
+      destination: stops[j],   // Ensure destination is a string
       travelMode: google.maps.TravelMode.DRIVING,
       provideRouteAlternatives: true,
     };
     directionsRequests.push(request);
 
     startingLocation = stops[i];
+  }
+  }
   }
 
   // Fetch directions for each request
@@ -73,7 +96,9 @@ const handleFormSubmit = (e) => {
   Promise.all(directionsPromises)
     .then((responses) => {
       // DATA RETREIVAL AND HANDLING
-      // console.log('DIRECTION RESPONSES:', responses)
+      console.log('DIRECTION RESPONSES:', responses)
+      // createContext(responses)
+
       console.log('DIRECTION RESPONSES[0].request:', responses[0].request)
 
       setResponses(responses)
@@ -83,27 +108,19 @@ const handleFormSubmit = (e) => {
 // let dataResponse = responses
             for (let i = 0; i < responses.length; i++) {
               sessionStorage.setItem(`stretches${i + 1}`, JSON.stringify(responses[i].request));
+              sessionStorage.setItem(`origin${i + 1}`, JSON.stringify(responses[i].request.origin));
+              sessionStorage.setItem(`destination${i + 1}`, JSON.stringify(responses[i].request.destination));
+              // sessionStorage.setItem(`seconds${i + 1}`, JSON.stringify(responses[i].routes[0].legs.duration.value));
+
               // console.log('STRETCHES-LOOP', sessionStorage.getItem(`stretches${i + 1}`));
             }
 
-            for (let i = 0; i < responses.length; i++) {
-              sessionStorage.setItem(`origin${i + 1}`, JSON.stringify(responses[i].request.origin));
-              // console.log('ORIGIN-LOOP', sessionStorage.getItem(`origin${i + 1}`));
-            }
-            for (let i = 0; i < responses.length; i++) {
-              sessionStorage.setItem(`destination${i + 1}`, JSON.stringify(responses[i].request.destination));
-              // console.log('DESTINATION-LOOP', sessionStorage.getItem(`destination${i + 1}`));
-            }
-            // for (let i = 0; i < responses.length; i++) {
-            //   sessionStorage.setItem(`seconds${i + 1}`, JSON.stringify(responses[i].routes[i].legs[i].duration));
-            //   console.log('Time-Loooop', sessionStorage.getItem(`seconds${i + 1}`));
 
-            // }
-
-
+        setLoading(false)
     })
     .catch((error) => {
       console.error("Error fetching directions:", error);
+      setLoading(false)
     });
   // console.log(dataResponse)
   navigate('/GetDirectionsMapOver');
@@ -149,3 +166,38 @@ const handleFormSubmit = (e) => {
 };
 
 export default AddRemoveStop;
+
+
+function permute(arr) {
+  const result = [];
+
+  function permuteHelper(arr, start) {
+      if (start === arr.length - 1) {
+          result.push([...arr]);
+          return;
+      }
+
+      for (let i = start; i < arr.length; i++) {
+          [arr[start], arr[i]] = [arr[i], arr[start]]; // Swap elements
+          permuteHelper(arr, start + 1);
+          [arr[start], arr[i]] = [arr[i], arr[start]]; // Restore original array
+      }
+  }
+
+  permuteHelper(arr, 0);
+  return result;
+}
+
+// Function to calculate the total time for a route
+async function calculateRouteTime(origin, stops, destination) {
+  let totalTime = 0;
+
+  // Assuming you have a function getRouteTime(origin, destination) to get the time for each stretch
+  for (let i = 0; i < stops.length; i++) {
+      totalTime += await getRouteTime(origin, stops[i]);
+      origin = stops[i]; // Update origin for the next stretch
+  }
+
+  totalTime += await getRouteTime(origin, destination); // Time from last stop to destination
+  return totalTime;
+}
