@@ -4,11 +4,12 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MapSpace from './components/Mapping/MapSpace';
 import CreateRoute from './components/Input/AddRemoveStop'
 import NavBar from './components/navbar'
+// import ImageDisplay  from './components/ImageDisplay';
 import Directions from './components/Mapping/Directions'
 import TabInputButton from './components/Input/TabInput';
 // import UserLocation from './components/UserLocation'
 import LocationSearch from './components/geolocation/LocationSearch';
-import ParentComponent from './components/ParentComponent';
+// import ParentComponent from './components/ParentComponent';
 import APIComponent from './components/geolocation/APIComponent'
 import GetDirectionMapOver from './components/geolocation/GetDirectionsMapOver';
 import AddRemoveStop from './AddRemoveStopOutside'
@@ -22,10 +23,10 @@ export default function App() {
 
 
 
-  const handleFormSubmit = (start, stops) => {
-    setStartLocation(start);
-    setStops(stops);
-  };
+  // const handleFormSubmit = (start, stops) => {
+  //   setStartLocation(start);
+  //   setStops(stops);
+  // };
 
   return (
    
@@ -33,7 +34,8 @@ export default function App() {
       <Container >
         <NavBar  />
           <Routes>
-          <Route path='/parentcomponent' element={<ParentComponent />}/>
+          <Route path="/" element={<CreateRoute />} />
+          {/* <Route path='/imagedisplay' element={<ImageDisplay />}/> */}
           <Route path='/mapspace' element={<MapSpace />}/>
           <Route path='/createroute' element={<CreateRoute onResponseChange={handleResponsesChange} />}/>
           <Route path='/directions' element={<Directions />}/>
