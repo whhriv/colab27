@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MapSpace from './components/Mapping/MapSpace';
 import CreateRoute from './components/Input/AddRemoveStop'
-import NavBar from './components/navbar'
-// import ImageDisplay  from './components/ImageDisplay';
+// import NavBar from './components/navbar'
+import ImageDisplay  from './components/ImageDisplay';
 import Directions from './components/Mapping/Directions'
 import TabInputButton from './components/Input/TabInput';
 // import UserLocation from './components/UserLocation'
@@ -32,9 +32,9 @@ export default function App() {
    
     <BrowserRouter>
       <Container >
-        <NavBar  />
+        {/* <NavBar  /> */}
           <Routes>
-          <Route path="/" element={<CreateRoute />} />
+          <Route path="/" element={<ImageDisplay />} />
           {/* <Route path='/imagedisplay' element={<ImageDisplay />}/> */}
           <Route path='/mapspace' element={<MapSpace />}/>
           <Route path='/createroute' element={<CreateRoute onResponseChange={handleResponsesChange} />}/>

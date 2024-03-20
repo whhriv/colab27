@@ -1,20 +1,22 @@
+
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const ImageDisplay = () => {
-  const history = useHistory();
 
+
+const ImageDisplay = ({ navigateToRoute }) => {
+  const navigate = useNavigate()
   useEffect(() => {
     const timeout = setTimeout(() => {
-      history.push('/createRoute');
-    }, 1000);
+      navigate('/createRoute');
+    }, 3000);
 
     return () => clearTimeout(timeout);
-  }, [history]);
+  }, [navigateToRoute]);
 
   return (
     <div>
-      <img src="smart_route_logo.png" alt="SmartRoute" />
+      <img src="/public/smart_route_logo.png" alt="Your Image" />
     </div>
   );
 };
