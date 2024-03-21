@@ -192,7 +192,7 @@ function permute(arr) {
 async function calculateRouteTime(origin, stops, destination) {
   let totalTime = 0;
 
-  // Assuming you have a function getRouteTime(origin, destination) to get the time for each stretch
+
   for (let i = 0; i < stops.length; i++) {
       totalTime += await getRouteTime(origin, stops[i]);
       origin = stops[i]; // Update origin for the next stretch

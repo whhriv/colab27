@@ -9,14 +9,14 @@ const ImageDisplay = ({ navigateToRoute }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       navigate('/createRoute');
-    }, 3000);
+    }, 2500);
 
     return () => clearTimeout(timeout);
   }, [navigateToRoute]);
 
   return (
     <div>
-      <img src="/public/smart_route_logo.png" alt="Your Image" />
+      <img src="smart_route_logo.png" alt="Your Image" />
     </div>
   );
 };
